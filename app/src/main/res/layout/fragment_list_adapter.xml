@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_6_dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_6_dp">
+
+
+        <TextView
+            android:id="@+id/txtNameRepositoryId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Repositório"
+            android:textColor="@color/blue_color"
+            android:textSize="@dimen/dimen_18_sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDescriptionRespositoryId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Descrição do repositório exemplo de como ficaria o texto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtNameRepositoryId"
+            app:layout_constraintTop_toBottomOf="@+id/txtNameRepositoryId" />
+
+        <TextView
+            android:id="@+id/txtForksId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="604"
+            android:textColor="@color/yellow_color"
+            android:textSize="@dimen/dimen_16_sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txtDescriptionRespositoryId"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescriptionRespositoryId" />
+
+        <TextView
+            android:id="@+id/txtStarsId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="280"
+            android:textColor="@color/yellow_color"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/txtForksId"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescriptionRespositoryId" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
