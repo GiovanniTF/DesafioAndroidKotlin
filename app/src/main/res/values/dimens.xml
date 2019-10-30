@@ -10,6 +10,8 @@
     <dimen name="dimen_18_dp">18dp</dimen>
     <dimen name="dimen_20_dp">20dp</dimen>
     <dimen name="dimen_22_dp">22dp</dimen>
+    <dimen name="dimen_32_dp">32dp</dimen>
+    <dimen name="dimen_50_dp">50dp</dimen>
 
     <dimen name="dimen_12_sp">12sp</dimen>
     <dimen name="dimen_14_sp">14sp</dimen>

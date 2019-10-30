@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="br.com.giovanni.desafioandroidkotlinapp.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="br.com.giovanni.desafioandroidkotlinapp.view.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_listPrsFragment"
+            app:destination="@id/listPrsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listPrsFragment"
+        android:name="br.com.giovanni.desafioandroidkotlinapp.view.ListPrsFragment"
+        android:label="fragment_list_prs"
+        tools:layout="@layout/fragment_list_prs" />
+
+</navigation>

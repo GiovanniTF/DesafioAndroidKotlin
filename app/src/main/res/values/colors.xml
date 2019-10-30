@@ -5,6 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     
     <!-- Colors App -->
-    <color name="yellow_color">#DAA520</color>
+    <color name="yellow_color">#F1C40F</color>
     <color name="blue_color">#4169E1</color>
+    <color name="dark_color">#343438</color>
+
 </resources>

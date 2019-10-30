@@ -7,18 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!--    <fragment-->
-    <!--        android:id="@+id/main_fragment_id"-->
-    <!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:navGraph="@navigation/main_navigation"/>-->
-
-    <TextView
-        android:id="@+id/txtTesteAPI"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="TextView" />
+        <fragment
+            android:id="@+id/main_fragment_id"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_navigation"/>
 
 </LinearLayout>
