@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.giovanni.desafioandroidkotlinapp.R
 import br.com.giovanni.desafioandroidkotlinapp.models.Posts
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_list_adapter.view.*
 
 class HomeAdapter (private val clickListener: (Posts) -> Unit): ListAdapter<Posts, HomeAdapter.ViewHolder>(
@@ -36,7 +37,9 @@ class HomeAdapter (private val clickListener: (Posts) -> Unit): ListAdapter<Post
 
             Glide.with(itemView.context)
                 .load(posts.owner.avatar_url)
+                .apply(RequestOptions.circleCropTransform())
                 .into(itemView.imgUserId)
+
             itemView.txtNameRepositoryId.text = posts.name
             itemView.txtUsernameId.text = posts.owner.login
             itemView.txtFullUsernameId.text = posts.full_name

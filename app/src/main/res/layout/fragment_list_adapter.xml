@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dimen_6_dp">
+    android:layout_marginHorizontal="@dimen/dimen_16_dp"
+    android:layout_marginVertical="@dimen/dimen_8_dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,30 +38,39 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNameRepositoryId"
             tools:text="Descrição do repositório exemplo de como ficaria o texto" />
 
+
         <TextView
             android:id="@+id/txtForksId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_branch_yellow"
+            android:padding="@dimen/dimen_2_dp"
             android:textColor="@color/yellow_color"
             android:textSize="@dimen/dimen_16_sp"
             android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_fork_yellow_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txtDescriptionRespositoryId"
             app:layout_constraintTop_toBottomOf="@+id/txtDescriptionRespositoryId"
+            app:layout_constraintVertical_bias="1.0"
             tools:text="604" />
 
         <TextView
             android:id="@+id/txtStarsId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:textColor="@color/yellow_color"
-            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_star_yellow_16dp"
+            android:padding="@dimen/dimen_2_dp"
+            android:textColor="@color/yellow_color"
+            android:textSize="@dimen/dimen_16_sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txtForksId"
             app:layout_constraintTop_toBottomOf="@+id/txtDescriptionRespositoryId"
+            app:layout_constraintVertical_bias="1.0"
             tools:text="280" />
-
 
         <TextView
             android:id="@+id/txtUsernameId"
@@ -72,23 +82,21 @@
             app:layout_constraintStart_toStartOf="@+id/imgUserId"
             app:layout_constraintTop_toBottomOf="@+id/imgUserId" />
 
+
         <TextView
             android:id="@+id/txtFullUsernameId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtUsernameId"
             tools:text="Nome e Sobrenome" />
-
 
         <ImageView
             android:id="@+id/imgUserId"
             android:layout_width="73dp"
             android:layout_height="58dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_launcher_round" />
