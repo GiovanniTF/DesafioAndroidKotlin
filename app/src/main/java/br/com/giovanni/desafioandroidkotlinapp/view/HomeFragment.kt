@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovanni.desafioandroidkotlinapp.R
 import br.com.giovanni.desafioandroidkotlinapp.models.*
+import br.com.giovanni.desafioandroidkotlinapp.viewModel.HomeAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
