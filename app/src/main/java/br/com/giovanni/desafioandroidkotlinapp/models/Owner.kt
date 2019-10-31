@@ -9,4 +9,5 @@ data class Owner (
 
     @SerializedName("avatar_url")
     var avatar_url : String
+
 )

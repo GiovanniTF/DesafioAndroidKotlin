@@ -16,14 +16,17 @@
 
         <TextView
             android:id="@+id/txtNameRepositoryId"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Nome do Repositório"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/blue_color"
             android:textSize="@dimen/dimen_18_sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imgUserId"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@sample/repositories.json/items/name" />
 
         <TextView
             android:id="@+id/txtDescriptionRespositoryId"
@@ -36,7 +39,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txtNameRepositoryId"
             app:layout_constraintTop_toBottomOf="@+id/txtNameRepositoryId"
-            tools:text="Descrição do repositório exemplo de como ficaria o texto" />
+            tools:text="@sample/repositories.json/items/description" />
 
 
         <TextView
@@ -53,7 +56,7 @@
             app:layout_constraintStart_toStartOf="@+id/txtDescriptionRespositoryId"
             app:layout_constraintTop_toBottomOf="@+id/txtDescriptionRespositoryId"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="604" />
+            tools:text="@sample/repositories.json/items/forks_count" />
 
         <TextView
             android:id="@+id/txtStarsId"
@@ -70,13 +73,13 @@
             app:layout_constraintStart_toEndOf="@+id/txtForksId"
             app:layout_constraintTop_toBottomOf="@+id/txtDescriptionRespositoryId"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="280" />
+            tools:text="@sample/repositories.json/items/stargazers_count" />
 
         <TextView
             android:id="@+id/txtUsernameId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Username"
+            tools:text="@sample/repositories.json/items/owner/login"
             android:textColor="@color/blue_color"
             app:layout_constraintEnd_toEndOf="@+id/imgUserId"
             app:layout_constraintStart_toStartOf="@+id/imgUserId"
@@ -91,7 +94,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtUsernameId"
-            tools:text="Nome e Sobrenome" />
+            tools:text="@sample/repositories.json/items/full_name" />
 
         <ImageView
             android:id="@+id/imgUserId"
