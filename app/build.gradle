@@ -37,6 +37,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    //viewmodel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
     implementation 'androidx.core:core-ktx:1.1.0'
@@ -53,4 +54,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'jp.wasabeef:glide-transformations:3.2.0'
     kapt 'com.github.bumptech.glide:compiler:4.4.0'
+
+    //Koin
+    implementation 'org.koin:koin-core:2.0.1'
+    testImplementation 'org.koin:koin-test:2.0.1'
 }

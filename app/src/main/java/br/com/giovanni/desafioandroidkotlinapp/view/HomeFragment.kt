@@ -1,29 +1,23 @@
 package br.com.giovanni.desafioandroidkotlinapp.view
 
-
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovanni.desafioandroidkotlinapp.R
-import br.com.giovanni.desafioandroidkotlinapp.models.ApiResponse
-import br.com.giovanni.desafioandroidkotlinapp.models.Endpoint
-import br.com.giovanni.desafioandroidkotlinapp.models.Posts
-import br.com.giovanni.desafioandroidkotlinapp.models.WebClient
-import br.com.giovanni.desafioandroidkotlinapp.viewModel.HomeAdapter
+import br.com.giovanni.desafioandroidkotlinapp.viewModel.ItemViewModel
+import br.com.giovanni.desafioandroidkotlinapp.viewModel.ItemViewState
 import kotlinx.android.synthetic.main.fragment_home.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var adapter: HomeAdapter
+
+    private lateinit var viewModel: ItemViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,43 +28,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         recyclerViewId.adapter = adapter
+        recyclerViewId.layoutManager = LinearLayoutManager(requireContext())
 
-        getData()
-    }
-
-
-    private fun getData() {
-        val retrofitClient = WebClient
-            .getRetrofitInstance("https://api.github.com/")
-
-        val endpoint = retrofitClient.create(Endpoint::class.java)
-        val callback = endpoint.getPosts()
-
-        callback.enqueue(object : Callback<ApiResponse<Posts>> {
-
-            override fun onFailure(call: Call<ApiResponse<Posts>>, t: Throwable) {
-                Log.e("MyActivity", "Erro de requisição " + t.message)
-
-                 AlertDialog.Builder(context)
-                     .setTitle("Algo deu errado.")
-                     .setCancelable(false)
-                     .setMessage("Por algum motivo, não conseguimos carregar as informações necessárias.")
-                     .setNegativeButton("Tentar novamente", DialogInterface.OnClickListener{dialog, id ->
-                         getData()
-                     })
-                     .show()
+        viewModel = ViewModelProviders.of(this)[ItemViewModel::class.java]
+        viewModel.getItemViewState().observe(this, Observer<ItemViewState> {
+            when (it) {
+                is ItemViewState.Error -> alertDialog()
+                is ItemViewState.Items -> {
+                    progressBarId.visibility = View.GONE
+                    adapter.submitList(it.posts)
+                }
             }
-
-            override fun onResponse(
-                call: Call<ApiResponse<Posts>>,
-                response: Response<ApiResponse<Posts>>
-            ) {
-                progressBarId.visibility = View.GONE
-                adapter.submitList(response.body()?.response)
-            }
-
         })
     }
 
-
+    private fun alertDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Algo deu errado.")
+            .setCancelable(false)
+            .setMessage("Por algum motivo, não conseguimos carregar as informações necessárias.")
+            .setNegativeButton("Tentar novamente") { _, _ ->
+                viewModel.getPost()
+            }
+            .show()
+    }
 }
