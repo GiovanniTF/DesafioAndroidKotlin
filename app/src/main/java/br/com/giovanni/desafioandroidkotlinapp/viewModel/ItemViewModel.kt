@@ -1,56 +1,45 @@
 package br.com.giovanni.desafioandroidkotlinapp.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.giovanni.desafioandroidkotlinapp.models.ApiResponse
-import br.com.giovanni.desafioandroidkotlinapp.models.Endpoint
-import br.com.giovanni.desafioandroidkotlinapp.models.Posts
-import br.com.giovanni.desafioandroidkotlinapp.models.WebClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.viewModelScope
+import br.com.giovanni.desafioandroidkotlinapp.models.Interactor
+import kotlinx.coroutines.launch
+import java.io.IOException
 
-class ItemViewModel : ViewModel() {
-
-    init {
-        getPost()
-    }
+class ItemViewModel(private val interactor: Interactor) : ViewModel() {
 
     private val state = MutableLiveData<ItemViewState>()
 
-    val viewState: LiveData<ItemViewState> = state
+    init {
+        getPosts()
+    }
 
     fun getItemViewState(): LiveData<ItemViewState> = state
 
-    fun getPost() {
+    fun getPosts() {
+        viewModelScope.launch {
 
-        val retrofitClient = WebClient
-            .getRetrofitInstance("https://api.github.com/")
+            try {
+                val apiResponse = interactor.getData()
 
-        val endpoint = retrofitClient.create(Endpoint::class.java)
-        val callback = endpoint.getPosts()
+                if (apiResponse.isSuccessful) {
+                    val posts = apiResponse.body()?.response
+                    posts?.let {
+                        if (it.isEmpty()) {
+                            state.value = ItemViewState.Empty
+                        } else {
+                            state.value = ItemViewState.Items(it)
+                        }
+                    }
 
-        callback.enqueue(object : Callback<ApiResponse<Posts>> {
-
-            override fun onFailure(call: Call<ApiResponse<Posts>>, t: Throwable) {
-                Log.e("MyActivity", "Erro de requisição " + t.message)
-
-                state.value = ItemViewState.Error
-            }
-
-            override fun onResponse(
-                call: Call<ApiResponse<Posts>>,
-                response: Response<ApiResponse<Posts>>
-            ) {
-                response.body()?.response?.let {
-                    state.value = ItemViewState.Items(it)
+                } else {
+                    state.value = ItemViewState.Error
                 }
-
+            } catch (exception: IOException) {
+                state.value = ItemViewState.ErrorTimeOut
             }
-
-        })
+        }
     }
-
 }

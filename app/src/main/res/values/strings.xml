@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">DesafioAndroidKotlinApp</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Mensagens de erro Dialog-->
+    <string name="title_error">Algo deu errado.</string>
+    <string name="title_button_try_again">Tentar novamente</string>
+    <string name="error_conection">Por algum motivo, não conseguimos carregar as informações necessárias. Verifique sua conexão.</string>
+    <string name="error_api_response">Infelizmente encontramos um erro em nosso servidor, por favor tente novamente mais tarde.</string>
+
 </resources>
