@@ -1,4 +1,4 @@
-package br.com.giovanni.desafioandroidkotlinapp.view
+package br.com.giovanni.desafioandroidkotlinapp.repos
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovanni.desafioandroidkotlinapp.R
-import br.com.giovanni.desafioandroidkotlinapp.models.Posts
+import br.com.giovanni.desafioandroidkotlinapp.api.Posts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_list_adapter.view.*
 
-class HomeAdapter (private val clickListener: (Posts) -> Unit): ListAdapter<Posts, HomeAdapter.ViewHolder>(
-    PostsDiffCallback()
-){
+class ReposAdapter(private val clickListener: (Posts) -> Unit) :
+    ListAdapter<Posts, ReposAdapter.ViewHolder>(
+        PostsDiffCallback()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -47,7 +48,7 @@ class HomeAdapter (private val clickListener: (Posts) -> Unit): ListAdapter<Post
             itemView.txtForksId.text = posts.forks.toString()
             itemView.txtStarsId.text = posts.stargazers_count.toString()
 
-            itemView.setOnClickListener{clickListener(posts)}
+            itemView.setOnClickListener { clickListener(posts) }
         }
     }
 

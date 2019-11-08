@@ -12,7 +12,7 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="br.com.giovanni.desafioandroidkotlinapp.view.HomeFragment"
+        android:name="br.com.giovanni.desafioandroidkotlinapp.repos.ReposFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/listPrsFragment"
-        android:name="br.com.giovanni.desafioandroidkotlinapp.view.ListPrsFragment"
+        android:name="br.com.giovanni.desafioandroidkotlinapp.reposdetail.DetailFragment"
         android:label="fragment_list_prs"
         tools:layout="@layout/fragment_list_prs" />
 
