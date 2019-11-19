@@ -7,11 +7,12 @@ import br.com.giovanni.desafioandroidkotlinapp.api.Posts
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import okhttp3.MediaType
+import okhttp3.ResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-import java.io.IOException
 
 class ReposViewModelTest {
 
@@ -59,5 +60,16 @@ class ReposViewModelTest {
         )
     }
 
+    @Test
+    fun callsReposErrorState() {
+        val errorBody = ResponseBody.create(MediaType.parse("application/json"), "")
+        coEvery { interactor.execute() } returns Response.error(400, errorBody)
 
+        val viewModel = ReposViewModel(interactor)
+
+        assertEquals(
+            viewModel.getPostViewState().value,
+            ReposViewState.Error
+        )
+    }
 }
