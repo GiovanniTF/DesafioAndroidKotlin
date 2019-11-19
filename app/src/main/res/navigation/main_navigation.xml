@@ -14,7 +14,7 @@
         android:id="@+id/homeFragment"
         android:name="br.com.giovanni.desafioandroidkotlinapp.repos.ReposFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_repos" >
         <action
             android:id="@+id/action_homeFragment_to_listPrsFragment"
             app:destination="@id/listPrsFragment" />

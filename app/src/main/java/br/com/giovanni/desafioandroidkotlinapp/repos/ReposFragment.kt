@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovanni.desafioandroidkotlinapp.R
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_repos.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ReposFragment : Fragment(R.layout.fragment_home) {
+class ReposFragment : Fragment(R.layout.fragment_repos) {
 
     private lateinit var adapter: ReposAdapter
 
@@ -37,6 +37,7 @@ class ReposFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         })
+
     }
 
     private fun alertDialog(messageAlert: String) {

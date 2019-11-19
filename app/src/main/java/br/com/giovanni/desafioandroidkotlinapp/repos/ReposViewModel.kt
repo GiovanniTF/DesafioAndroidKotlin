@@ -31,9 +31,7 @@ class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewM
                                 ReposViewState.Empty
                         } else {
                             state.value =
-                                ReposViewState.Repos(
-                                    it
-                                )
+                                ReposViewState.Repos(it)
                         }
                     }
 
