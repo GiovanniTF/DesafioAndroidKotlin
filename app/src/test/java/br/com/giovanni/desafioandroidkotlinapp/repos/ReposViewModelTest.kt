@@ -13,6 +13,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
+import java.io.IOException
 
 class ReposViewModelTest {
 
@@ -72,4 +73,17 @@ class ReposViewModelTest {
             ReposViewState.Error
         )
     }
+
+    @Test
+    fun callsReposErrorTimeOutState() {
+        coEvery { interactor.execute() } throws IOException("Timeout")
+
+        val viewModel = ReposViewModel(interactor)
+
+        assertEquals(
+            viewModel.getPostViewState().value,
+            ReposViewState.ErrorTimeOut
+        )
+    }
+
 }
