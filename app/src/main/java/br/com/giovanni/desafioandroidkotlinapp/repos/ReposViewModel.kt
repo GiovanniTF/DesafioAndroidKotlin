@@ -15,7 +15,7 @@ class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewM
         getPosts()
     }
 
-    fun getItemViewState(): LiveData<ReposViewState> = state
+    fun getPostViewState(): LiveData<ReposViewState> = state
 
     fun getPosts() {
         viewModelScope.launch {

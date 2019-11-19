@@ -27,7 +27,7 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
         recyclerViewId.adapter = adapter
         recyclerViewId.layoutManager = LinearLayoutManager(requireContext())
 
-        reposViewModel.getItemViewState().observe(this, Observer<ReposViewState> {
+        reposViewModel.getPostViewState().observe(this, Observer<ReposViewState> {
             when (it) {
                 is ReposViewState.Error -> alertDialog(getString(R.string.error_api_response))
                 is ReposViewState.ErrorTimeOut -> alertDialog(getString(R.string.error_conection))
