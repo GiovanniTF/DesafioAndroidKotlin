@@ -59,8 +59,9 @@ dependencies {
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation "com.squareup.okhttp3:okhttp:4.2.2"
 
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
@@ -74,13 +75,16 @@ dependencies {
 
     //Testes
     testImplementation "io.mockk:mockk:1.9.3"
-    androidTestImplementation 'androidx.test:rules:1.2.0'
     testImplementation 'junit:junit:4.12'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestUtil 'androidx.test:orchestrator:1.2.0'
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.2.1"
 
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
 }

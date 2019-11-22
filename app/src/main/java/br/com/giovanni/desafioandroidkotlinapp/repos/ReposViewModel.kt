@@ -19,7 +19,6 @@ class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewM
 
     fun getPosts() {
         viewModelScope.launch {
-
             try {
                 val apiResponse = getReposInteractor.execute()
 

@@ -7,8 +7,8 @@ import br.com.giovanni.desafioandroidkotlinapp.api.Posts
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import okhttp3.MediaType
-import okhttp3.ResponseBody
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -63,7 +63,7 @@ class ReposViewModelTest {
 
     @Test
     fun callsReposErrorState() {
-        val errorBody = ResponseBody.create(MediaType.parse("application/json"), "")
+        val errorBody = "".toResponseBody("application/json".toMediaType())
         coEvery { interactor.execute() } returns Response.error(400, errorBody)
 
         val viewModel = ReposViewModel(interactor)
@@ -76,7 +76,7 @@ class ReposViewModelTest {
 
     @Test
     fun callsReposErrorTimeOutState() {
-        coEvery { interactor.execute() } throws IOException("Timeout")
+        coEvery { interactor.execute() } throws IOException()
 
         val viewModel = ReposViewModel(interactor)
 
