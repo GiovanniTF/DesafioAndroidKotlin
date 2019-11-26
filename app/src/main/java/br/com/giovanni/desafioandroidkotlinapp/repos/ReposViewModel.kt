@@ -4,12 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import br.com.giovanni.desafioandroidkotlinapp.api.Posts
+import kotlinx.coroutines.*
+import okhttp3.internal.toImmutableList
 import java.io.IOException
 
 class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewModel() {
 
     private val state = MutableLiveData<ReposViewState>()
+    private var listPost = listOf<Posts>()
+
+    var page: Int = 1
 
     init {
         getPosts()
@@ -20,7 +25,7 @@ class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewM
     fun getPosts() {
         viewModelScope.launch {
             try {
-                val apiResponse = getReposInteractor.execute()
+                val apiResponse = getReposInteractor.execute(page)
 
                 if (apiResponse.isSuccessful) {
                     val posts = apiResponse.body()?.response
@@ -29,8 +34,10 @@ class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewM
                             state.value =
                                 ReposViewState.Empty
                         } else {
+                            listPost = listPost + it
                             state.value =
-                                ReposViewState.Repos(it)
+                                ReposViewState.Repos(listPost)
+                            page++
                         }
                     }
 

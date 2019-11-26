@@ -6,7 +6,5 @@ import br.com.giovanni.desafioandroidkotlinapp.api.Posts
 import retrofit2.Response
 
 class GetReposInteractor(private val endpoint: Endpoint) {
-
-    suspend fun execute(): Response<ApiResponse<Posts>> = endpoint.getPosts()
-
+    suspend fun execute(page : Int): Response<ApiResponse<Posts>> = endpoint.getPosts(page)
 }

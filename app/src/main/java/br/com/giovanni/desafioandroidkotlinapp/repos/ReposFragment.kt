@@ -6,15 +6,19 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.giovanni.desafioandroidkotlinapp.R
 import kotlinx.android.synthetic.main.fragment_repos.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ReposFragment : Fragment(R.layout.fragment_repos) {
 
     private lateinit var adapter: ReposAdapter
 
     private val reposViewModel: ReposViewModel by viewModel()
+
+    private lateinit var scrollListener: EndlessRecyclerViewScrollListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,8 +28,10 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
 
         }
 
+        val layoutManager = LinearLayoutManager (requireContext())
+
         recyclerViewId.adapter = adapter
-        recyclerViewId.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewId.layoutManager = layoutManager
 
         reposViewModel.getPostViewState().observe(this, Observer<ReposViewState> {
             when (it) {
@@ -37,6 +43,14 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
                 }
             }
         })
+
+        scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager){
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                reposViewModel.getPosts()
+            }
+        }
+
+        recyclerViewId.addOnScrollListener(scrollListener)
 
     }
 

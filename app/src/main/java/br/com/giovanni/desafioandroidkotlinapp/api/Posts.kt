@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName
 data class Posts(
 
     @SerializedName("id")
-    var id: Int,
+    val id: Int,
 
     @SerializedName("full_name")
-    var full_name: String,
+    val full_name: String,
 
     @SerializedName("owner")
-    var owner: Owner,
+    val owner: Owner,
 
     @SerializedName("name")
-    var name: String,
+    val name: String,
 
     @SerializedName("description")
-    var description: String,
+    val description: String,
 
     @SerializedName("forks")
-    var forks: Int,
+    val forks: Int,
 
     @SerializedName("stargazers_count")
-    var stargazers_count: Int
+    val stargazers_count: Int
 
 )
