@@ -30,7 +30,7 @@ class ReposActivityTest {
             setupReposResponse()
             launchReposActivity()
             performScroll(10)
-            checkReposDisplayed("retrofit")
+            retryer { checkReposDisplayed("retrofit") }
         }
     }
 

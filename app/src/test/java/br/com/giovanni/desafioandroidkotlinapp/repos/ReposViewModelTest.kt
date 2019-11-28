@@ -23,6 +23,8 @@ class ReposViewModelTest {
 
     private val interactor = mockk<GetReposInteractor>()
 
+    private val page: Int = 1
+
     private fun createApiResponse() = ApiResponse(
         listOf(
             Posts(
@@ -38,7 +40,7 @@ class ReposViewModelTest {
     fun callsReposState() {
         val apiResponse = createApiResponse()
 
-        coEvery { interactor.execute() } returns Response.success(apiResponse)
+        coEvery { interactor.execute(page) } returns Response.success(apiResponse)
 
         val viewModel = ReposViewModel(interactor)
 
@@ -46,12 +48,11 @@ class ReposViewModelTest {
             viewModel.getPostViewState().value,
             ReposViewState.Repos(apiResponse.response)
         )
-
     }
 
     @Test
     fun callsReposEmptyState() {
-        coEvery { interactor.execute() } returns Response.success(ApiResponse(emptyList()))
+        coEvery { interactor.execute(page) } returns Response.success(ApiResponse(emptyList()))
 
         val viewModel = ReposViewModel(interactor)
 
@@ -64,7 +65,7 @@ class ReposViewModelTest {
     @Test
     fun callsReposErrorState() {
         val errorBody = "".toResponseBody("application/json".toMediaType())
-        coEvery { interactor.execute() } returns Response.error(400, errorBody)
+        coEvery { interactor.execute(page) } returns Response.error(400, errorBody)
 
         val viewModel = ReposViewModel(interactor)
 
@@ -76,7 +77,7 @@ class ReposViewModelTest {
 
     @Test
     fun callsReposErrorTimeOutState() {
-        coEvery { interactor.execute() } throws IOException()
+        coEvery { interactor.execute(page) } throws IOException()
 
         val viewModel = ReposViewModel(interactor)
 
@@ -85,5 +86,4 @@ class ReposViewModelTest {
             ReposViewState.ErrorTimeOut
         )
     }
-
 }
