@@ -35,7 +35,7 @@ class ReposRobot(
     }
 
     fun performScroll(position: Int){
-        onView(withId(R.id.recyclerViewId))
+        onView(withId(R.id.recyclerViewReposId))
             .perform(scrollToPosition<RecyclerView.ViewHolder>(position))
     }
 

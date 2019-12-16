@@ -23,6 +23,6 @@
         android:id="@+id/listPrsFragment"
         android:name="br.com.giovanni.desafioandroidkotlinapp.reposdetail.DetailFragment"
         android:label="fragment_list_prs"
-        tools:layout="@layout/fragment_list_prs" />
+        tools:layout="@layout/fragment_detail" />
 
 </navigation>

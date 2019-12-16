@@ -29,8 +29,9 @@ class ReposActivityTest {
         robot.command {
             setupReposResponse()
             launchReposActivity()
-            performScroll(10)
-            retryer { checkReposDisplayed("retrofit") }
+            retryer {
+                performScroll(10)
+                checkReposDisplayed("retrofit") }
         }
     }
 

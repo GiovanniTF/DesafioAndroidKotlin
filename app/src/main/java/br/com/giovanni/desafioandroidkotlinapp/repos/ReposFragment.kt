@@ -30,8 +30,8 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
 
         val layoutManager = LinearLayoutManager (requireContext())
 
-        recyclerViewId.adapter = adapter
-        recyclerViewId.layoutManager = layoutManager
+        recyclerViewReposId.adapter = adapter
+        recyclerViewReposId.layoutManager = layoutManager
 
         reposViewModel.getPostViewState().observe(this, Observer<ReposViewState> {
             when (it) {
@@ -50,7 +50,7 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
             }
         }
 
-        recyclerViewId.addOnScrollListener(scrollListener)
+        recyclerViewReposId.addOnScrollListener(scrollListener)
 
     }
 
