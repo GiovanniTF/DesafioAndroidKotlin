@@ -1,4 +1,4 @@
-package br.com.giovanni.desafioandroidkotlinapp.repos;
+package br.com.giovanni.desafioandroidkotlinapp;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
