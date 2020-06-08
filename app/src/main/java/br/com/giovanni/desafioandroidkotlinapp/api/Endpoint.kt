@@ -8,5 +8,11 @@ import retrofit2.http.Query
 
 interface Endpoint {
     @GET("search/repositories?q=language:Java&sort=stars")
-    suspend fun getPosts(@Query("page") page: Int): Response<ApiResponse<Posts>>
+    suspend fun getPosts(@Query("page") page: Int):
+            Response<ApiResponse<Posts>>
+
+    @GET("repos/{userArgs}/{repositoryArgs}/pulls")
+    suspend fun getRequest(@Path("userArgs") userArgs: String,
+                           @Path("repositoryArgs") repositoryArgs: String):
+            Response<List<PullRequestPosts>>
 }
