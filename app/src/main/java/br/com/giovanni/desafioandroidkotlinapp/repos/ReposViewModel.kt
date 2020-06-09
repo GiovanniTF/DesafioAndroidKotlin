@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.giovanni.desafioandroidkotlinapp.api.Posts
-import kotlinx.coroutines.*
-import okhttp3.internal.toImmutableList
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 class ReposViewModel(private val getReposInteractor: GetReposInteractor) : ViewModel() {

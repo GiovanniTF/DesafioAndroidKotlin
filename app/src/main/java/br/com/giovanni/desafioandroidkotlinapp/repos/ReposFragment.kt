@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.giovanni.desafioandroidkotlinapp.EndlessRecyclerViewScrollListener
 import br.com.giovanni.desafioandroidkotlinapp.R
 import kotlinx.android.synthetic.main.fragment_repos.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,16 +26,22 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = ReposAdapter {
-            //Passar post
+
+            val loginArgs = it.owner.login
+            val name = it.name
+
+            val action = ReposFragmentDirections.actionReposToList(loginArgs, name)
+
+            view.findNavController().navigate(action)
 
         }
 
-        val layoutManager = LinearLayoutManager (requireContext())
+        val layoutManager = LinearLayoutManager(requireContext())
 
         recyclerViewId.adapter = adapter
         recyclerViewId.layoutManager = layoutManager
 
-        reposViewModel.getPostViewState().observe(this, Observer<ReposViewState> {
+        reposViewModel.getPostViewState().observe(viewLifecycleOwner, Observer<ReposViewState> {
             when (it) {
                 is ReposViewState.Error -> alertDialog(getString(R.string.error_api_response))
                 is ReposViewState.ErrorTimeOut -> alertDialog(getString(R.string.error_conection))
@@ -44,7 +52,7 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
             }
         })
 
-        scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager){
+        scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 reposViewModel.getPosts()
             }

@@ -10,7 +10,7 @@ import br.com.giovanni.desafioandroidkotlinapp.R
 import br.com.giovanni.desafioandroidkotlinapp.api.Posts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.fragment_list_adapter.view.*
+import kotlinx.android.synthetic.main.fragment_repos_adapter.view.*
 
 class ReposAdapter(private val clickListener: (Posts) -> Unit) :
     ListAdapter<Posts, ReposAdapter.ViewHolder>(
@@ -21,7 +21,7 @@ class ReposAdapter(private val clickListener: (Posts) -> Unit) :
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(
             inflater.inflate(
-                R.layout.fragment_list_adapter,
+                R.layout.fragment_repos_adapter,
                 parent,
                 false
             )
