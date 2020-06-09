@@ -9,4 +9,7 @@
     <string name="error_conection">Por algum motivo, não conseguimos carregar as informações necessárias. Verifique sua conexão.</string>
     <string name="error_api_response">Infelizmente encontramos um erro em nosso servidor, por favor tente novamente mais tarde.</string>
 
+    <!--Description-->
+    <string name="image_user">Imagem do Usuário</string>
+
 </resources>
