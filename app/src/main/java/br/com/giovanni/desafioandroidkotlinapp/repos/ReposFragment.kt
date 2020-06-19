@@ -13,27 +13,19 @@ import br.com.giovanni.desafioandroidkotlinapp.R
 import kotlinx.android.synthetic.main.fragment_repos.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class ReposFragment : Fragment(R.layout.fragment_repos) {
-
     private lateinit var adapter: ReposAdapter
-
     private val reposViewModel: ReposViewModel by viewModel()
-
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = ReposAdapter {
-
             val loginArgs = it.owner.login
             val name = it.name
-
             val action = ReposFragmentDirections.actionReposToList(loginArgs, name)
-
             view.findNavController().navigate(action)
-
         }
 
         val layoutManager = LinearLayoutManager(requireContext())
@@ -55,6 +47,7 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
         scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 reposViewModel.getPosts()
+                progressBarId.visibility = View.VISIBLE
             }
         }
 

@@ -42,8 +42,8 @@
 
         <ImageView
             android:id="@+id/imgUserPullRequestId"
-            android:layout_width="73dp"
-            android:layout_height="73dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginTop="8dp"
             android:src="@mipmap/ic_launcher_round"
             android:contentDescription="@string/image_user"
