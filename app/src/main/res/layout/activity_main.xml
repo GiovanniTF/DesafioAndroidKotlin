@@ -10,8 +10,10 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@color/white_color" />
 
     <fragment
         android:id="@+id/main_fragment_id"
