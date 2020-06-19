@@ -10,9 +10,6 @@ data class PullRequestPosts(
     @SerializedName("title")
     val title: String,
 
-    @SerializedName("body")
-    val body: String,
-
     @SerializedName("user")
     val user: User,
 
