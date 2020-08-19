@@ -5,7 +5,6 @@ import androidx.test.rule.ActivityTestRule
 import br.com.giovanni.desafioandroidkotlinapp.MainActivity
 import br.com.giovanni.desafioandroidkotlinapp.MockWebServerRule
 import br.com.giovanni.desafioandroidkotlinapp.R
-import br.com.giovanni.desafioandroidkotlinapp.repos.command
 import br.com.giovanni.desafioandroidkotlinapp.retryer
 import org.junit.Rule
 import org.junit.Test
