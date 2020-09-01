@@ -1,33 +1,22 @@
 package br.com.giovanni.desafioandroidkotlinapp.pullrequests
 
-import android.content.Intent
+import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.rule.ActivityTestRule
-import br.com.giovanni.desafioandroidkotlinapp.MainActivity
 import br.com.giovanni.desafioandroidkotlinapp.R
 import okhttp3.mockwebserver.MockWebServer
 
 fun PullRequestRobot.command(func: PullRequestRobot.() -> Unit) = this.apply { func() }
 
 class PullRequestRobot(
-    private val activityRule: ActivityTestRule<MainActivity>,
     private val mockWebServer: MockWebServer
 ) {
 
-//    fun setAssets():String{
-//        val fileName = "pullRequestJsonAsset.txt"
-//        return activityRule.activity.assets.open(fileName).bufferedReader().use {
-//            it.readText()
-//        }
-//    }
+    lateinit var scenario: FragmentScenario<PullRequestFragment>
 
     fun setupPullRequests_Response() {
         mockWebServer.dispatcher = PullRequestsDispatcher()
@@ -42,22 +31,23 @@ class PullRequestRobot(
     }
 
     fun launchPullRequestsActivity() {
-        activityRule.launchActivity(Intent())
+        val bundle = PullRequestFragmentArgs("CyC2018", "CS-Notes").toBundle()
+        scenario = launchFragmentInContainer<PullRequestFragment>(bundle)
     }
 
-    fun performScroll(position: Int){
-        onView(withId(R.id.recyclerViewDetailId))
-            .perform(scrollToPosition<RecyclerView.ViewHolder>(position))
+    fun performScroll(position: Int) {
+            onView(withId(R.id.recyclerViewDetailId))
+                .perform(scrollToPosition<RecyclerView.ViewHolder>(position))
     }
 
-    fun checkPullRequestsDisplayed(title: Int){
-        onView(withText(title))
-            .check(matches(isDisplayed()))
+    fun checkPullRequestsDisplayed(title: Int) {
+            onView(withText(title))
+                .check(matches(isDisplayed()))
     }
 
-    fun checkPullRequestsDisplayed(title: String){
-        onView(withText(title))
-            .check(matches(isDisplayed()))
+    fun checkPullRequestsDisplayed(title: String) {
+            onView(withText(title))
+                .check(matches(isDisplayed()))
     }
 
 }

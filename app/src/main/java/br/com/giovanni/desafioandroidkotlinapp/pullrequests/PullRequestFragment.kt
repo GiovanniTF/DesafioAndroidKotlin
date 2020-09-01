@@ -19,11 +19,6 @@ class PullRequestFragment : Fragment(R.layout.fragment_pull_request) {
 
         val layoutManager = LinearLayoutManager(requireContext())
 
-        arguments?.let {
-            val safeArgs = PullRequestFragmentArgs.fromBundle(it)
-            pullRequestViewModel.getPullRequest(safeArgs.userArgs, safeArgs.repositoryArgs)
-        }
-
         recyclerViewDetailId.adapter = adapter
         recyclerViewDetailId.layoutManager = layoutManager
 
@@ -37,6 +32,12 @@ class PullRequestFragment : Fragment(R.layout.fragment_pull_request) {
                 }
             }
         })
+
+        arguments?.let {
+            val safeArgs = PullRequestFragmentArgs.fromBundle(it)
+            pullRequestViewModel.getPullRequest(safeArgs.userArgs, safeArgs.repositoryArgs)
+        }
+
     }
 
     private fun alertDialog(messageAlert: String) {

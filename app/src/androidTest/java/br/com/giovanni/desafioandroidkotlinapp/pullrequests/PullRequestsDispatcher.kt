@@ -9,7 +9,6 @@ import okhttp3.mockwebserver.SocketPolicy
 class PullRequestsDispatcher (
     private val isError: Boolean = false,
     private val isTimeOut: Boolean = false
-//    val asset: String
 ) : Dispatcher(){
     override fun dispatch(request: RecordedRequest): MockResponse {
 

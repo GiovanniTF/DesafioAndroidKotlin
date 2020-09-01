@@ -11,36 +11,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PullRequestsActivityTest {
-
-    @get:Rule
-    val activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(
-        MainActivity::class.java,
-        false,
-        false
-
-    )
+class PullRequestsFragmentTest {
 
     @get:Rule
     val mockWebServerRule = MockWebServerRule()
+    private val robot = PullRequestRobot( mockWebServerRule.mockWebServer)
 
-    private val robot = PullRequestRobot(activityRule, mockWebServerRule.mockWebServer)
-
-    @Test
-    fun showPullRequest(){
-        robot.command {
-            setupPullRequests_Response()
-            launchPullRequestsActivity()
-            checkPullRequestsDisplayed("修复打错的代码")
-        }
-    }
 
     @Test
     fun showPullRequestScroll(){
         robot.command {
             setupPullRequests_Response()
             launchPullRequestsActivity()
-            performScroll(2)
+            performScroll(3)
             retryer { checkPullRequestsDisplayed("Serialization bugs") }
         }
     }
