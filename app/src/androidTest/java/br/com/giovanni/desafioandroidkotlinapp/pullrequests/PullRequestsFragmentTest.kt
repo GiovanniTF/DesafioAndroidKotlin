@@ -1,11 +1,7 @@
 package br.com.giovanni.desafioandroidkotlinapp.pullrequests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
-import br.com.giovanni.desafioandroidkotlinapp.MainActivity
-import br.com.giovanni.desafioandroidkotlinapp.MockWebServerRule
-import br.com.giovanni.desafioandroidkotlinapp.R
-import br.com.giovanni.desafioandroidkotlinapp.retryer
+import br.com.giovanni.desafioandroidkotlinapp.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,7 +10,7 @@ import org.junit.runner.RunWith
 class PullRequestsFragmentTest {
 
     @get:Rule
-    val mockWebServerRule = MockWebServerRule()
+    val mockWebServerRule = MockWebServerTest()
     private val robot = PullRequestRobot( mockWebServerRule.mockWebServer)
 
 
