@@ -1,27 +1,29 @@
-package br.com.giovanni.desafioandroidkotlinapp.repos
+package br.com.giovanni.desafioandroidkotlinapp.pullrequests
 
+import android.content.res.AssetManager
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 import okhttp3.mockwebserver.SocketPolicy
 
-class ReposDispatcher(
+class PullRequestsDispatcher (
     private val isError: Boolean = false,
     private val isTimeOut: Boolean = false
-) : Dispatcher() {
+) : Dispatcher(){
     override fun dispatch(request: RecordedRequest): MockResponse {
-        return if (request.path == "/search/repositories?q=language:Java&sort=stars&page=1") {
-            when {
+
+        return if (request.path == "https://api.github.com/repos/CyC2018/CS-Notes/pulls") {
+            when{
                 isError -> {
-                    MockResponse().setResponseCode(404).setBody(REPOS)
+                    MockResponse().setResponseCode(404).setBody(PULL)
                 }
                 isTimeOut -> {
                     MockResponse().apply {
                         socketPolicy = SocketPolicy.NO_RESPONSE
                     }
                 }
-                else -> {
-                    MockResponse().setResponseCode(200).setBody(REPOS)
+                else-> {
+                    MockResponse().setResponseCode(200).setBody(PULL)
                 }
             }
         } else {
