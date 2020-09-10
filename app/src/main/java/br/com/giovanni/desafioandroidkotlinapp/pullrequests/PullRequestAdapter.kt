@@ -43,8 +43,8 @@ class PullRequestAdapter:
 
             itemView.txtTitlePullRequestId.text = pullRequestPosts.title
             itemView.txtUsernamePullRequestId.text = pullRequestPosts.user.login
-            itemView.txtFullUsernamePullRequestId.text = pullRequestPosts.head.repo.full_name
-            itemView.txtDescriptionPullRequestId.text = pullRequestPosts.head.repo.description
+            itemView.txtFullUsernamePullRequestId.text = pullRequestPosts.head.repo?.full_name
+            itemView.txtDescriptionPullRequestId.text = pullRequestPosts.head.repo?.description
         }
     }
 
