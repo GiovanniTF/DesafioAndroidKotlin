@@ -29,7 +29,7 @@ data class User(
 
 data class Head(
     @SerializedName("repo")
-    val repo: Repo
+    val repo: Repo?
 )
 
 data class Repo(
